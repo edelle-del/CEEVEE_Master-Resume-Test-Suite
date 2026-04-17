@@ -30,7 +30,7 @@
 ## 1. Test Scope & Objectives
 
 ### In Scope
-- Creating a master resume from scratch or via upload
+- Creating a via upload
 - Editing all individual resume sections through the editor page
 - Section-level UI behaviors: collapse/expand, drag-to-reorder
 - Creating, switching between, and deleting multiple profiles
