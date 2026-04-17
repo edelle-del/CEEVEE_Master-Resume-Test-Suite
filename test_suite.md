@@ -3,7 +3,7 @@
 **Feature Under Test:** Master Resume (Creation, Editing, and Multi-Profile Management)  
 **Document Version:** 1.0  
 **Date:** April 17, 2026  
-**Prepared By:** QA Team  
+**Prepared By:** Edelle Gibben Lumabi  
 
 ---
 
