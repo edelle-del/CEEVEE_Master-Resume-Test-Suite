@@ -13,28 +13,22 @@ This folder contains a comprehensive QA test suite for the **Master Resume** fea
 
 ## Test Case Format
 
-Each test case is documented in a table row with the following columns:
+Each test case in `test_suite.md` uses a **detailed markdown block format**:
 
 | Column | Description |
 |---|---|
-| `Test Case ID` | Unique identifier (example: `TC-A-001`) |
-| `Test Case Description` | What the test verifies |
-| `Type` | Test classification (Functional, Validation, UI, Edge, Integration, etc.) |
-| `Priority` | Execution priority (for example: P0 Critical, P1 High, P2 Medium, P3 Low) |
-| `Steps` | Actions to execute the test |
-| `Expected Result` | Required outcome for pass criteria |
-| `Pass` | Mark when actual behavior matches expected result |
-| `Fail` | Mark when actual behavior differs from expected result |
-| `Notes` | Extra context such as preconditions, defects, or observations |
+| `Title` | Test case heading (example: `### TC-A-001: Upload an existing resume file (PDF)`) |
+| `Field / Detail table` | Includes `Test ID`, `Priority`, and `Type` |
+| `Preconditions` | Setup requirements before execution (if applicable) |
+| `Steps` | Numbered actions to execute |
+| `Expected Results` | Bullet list of required outcomes |
 
 ## How To Use
 
 1. Open `test_suite.md`.
-2. Execute tests section by section (A to L, or based on priority).
-3. For each test case, mark exactly one outcome:
-   - `Pass` if expected result is fully met
-   - `Fail` if any expected result is not met
-4. Add relevant details in `Notes` (bug ID, screenshots, environment, repro notes).
+2. Execute tests section by section (A to L), or prioritize by `Priority` value in each test case.
+3. For each test case, run all listed steps and compare actual outcomes against all expected results.
+4. Record execution outcomes in your tracker of choice (for example: spreadsheet, test management tool, or issue tracker).
 
 ## Recommended Execution Order
 
@@ -47,9 +41,9 @@ Each test case is documented in a table row with the following columns:
 - A test case should be marked **Pass** only when all expected results are satisfied and no blocking errors occur.
 - A test case should be marked **Fail** if there is any mismatch, data loss, crash, or unexpected behavior.
 
-## Notes Best Practices
+## Execution Notes Best Practices
 
-Use the `Notes` column for:
+When logging results externally, include:
 
 - Bug reference ID (example: `BUG-123`)
 - Environment details (browser, viewport, network mode)
