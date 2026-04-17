@@ -2,6 +2,11 @@
 
 This folder contains a comprehensive QA test suite for the **Master Resume** feature.
 
+## Test Target Links
+
+- Website under test: [https://cv-ai.work/](https://cv-ai.work/)
+- Feature documentation: [https://cv-ai.work/docs](https://cv-ai.work/docs)
+
 ## Contents
 
 - `test_suite.md` — Main test document with all test sections and test cases
