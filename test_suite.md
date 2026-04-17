@@ -84,35 +84,79 @@ A test case **passes** when all stated expected results are observed with no unh
 
 ## Section A — Resume Upload & Initial Creation
 
+---
+
 ### TC-A-001: Upload an existing resume file (PDF)
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-A-001 | Upload an existing resume file (PDF) |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Upload an existing resume file (PDF).<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-A-001 |
+| **Priority** | P0 — Critical |
+| **Type** | Functional |
+
+**Preconditions:** User has a valid PDF resume under 10MB.
+
+**Steps:**
+1. Click "Upload Resume."
+2. Select a PDF file from the file picker.
+3. Wait for parsing/processing to complete.
+4. Observe the editor page.
+
+**Expected Results:**
+- File is accepted without error.
+- Parsed content populates relevant sections (name, email, employment, etc.) where recognizable.
+- Unparsed or ambiguous data is placed in the most relevant field or left blank.
+- A success confirmation is shown.
 
 ---
 
 ### TC-A-002: Upload an existing resume file (DOCX)
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-A-002 | Upload an existing resume file (DOCX) |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Upload an existing resume file (DOCX).<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-A-002 |
+| **Priority** | P1 — High |
+| **Type** | Functional |
+
+**Steps:** Same as TC-A-001, using a .docx file.
+
+**Expected Results:** Same as TC-A-001. DOCX content is parsed and populated correctly.
 
 ---
 
 ### TC-A-003: Upload unsupported file type
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-A-003 | Upload unsupported file type |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Upload unsupported file type.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-A-003 |
+| **Priority** | P1 — High |
+| **Type** | Negative / Validation |
+
+**Steps:**
+1. Attempt to upload a `.png`, `.xlsx`, or `.txt` file as a resume.
+
+**Expected Results:**
+- Upload is rejected before or immediately after submission.
+- An inline error message is displayed: e.g., "Only PDF or DOCX files are supported."
+- No profile is created.
+- The file picker resets cleanly.
 
 ---
 
 ### TC-A-004: Upload file exceeding size limit
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-A-004 | Upload file exceeding size limit |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Upload file exceeding size limit.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-A-004 |
+| **Priority** | P1 — High |
+| **Type** | Negative / Validation |
+
+**Steps:**
+1. Attempt to upload a PDF larger than the stated file size limit (e.g., 20MB file).
+
+**Expected Results:**
+- Upload is blocked with a clear error: e.g., "File size exceeds the 10MB limit."
+- No profile is created.
 
 ---
 
@@ -120,65 +164,147 @@ A test case **passes** when all stated expected results are observed with no unh
 
 ### TC-B-001: Save all Contact Info fields successfully
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-B-001 | Save all Contact Info fields successfully |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Save all Contact Info fields successfully.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-B-001 |
+| **Priority** | P0 — Critical |
+| **Type** | Functional |
+
+**Steps:**
+1. Open editor → Contact Info section.
+2. Enter: Full Name, Email, Phone, LinkedIn URL, GitHub URL, Portfolio URL.
+3. Click Save (or trigger auto-save).
+4. Reload the page.
+
+**Expected Results:**
+- All six fields are saved and repopulated correctly after reload.
+- LinkedIn and GitHub fields accept full URLs (e.g., `https://linkedin.com/in/username`).
 
 ---
 
 ### TC-B-002: Email field validation
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-B-002 | Email field validation |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Email field validation.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-B-002 |
+| **Priority** | P1 — High |
+| **Type** | Validation |
+
+**Steps:**
+1. Enter invalid email formats one at a time: `notanemail`, `@domain.com`, `user@`, `user@domain`.
+2. Attempt to save after each.
+
+**Expected Results:**
+- Each invalid entry triggers an inline validation error.
+- Save is blocked until a valid email is provided.
+- Valid format `user@domain.com` passes without error.
 
 ---
 
 ### TC-B-003: Phone field accepts international formats
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-B-003 | Phone field accepts international formats |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Phone field accepts international formats.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-B-003 |
+| **Priority** | P2 — Medium |
+| **Type** | Functional / Validation |
+
+**Steps:**
+1. Enter the following phone numbers one at a time and save each: `(555) 123-4567`, `+1-555-123-4567`, `+63 917 123 4567`, `555.123.4567`.
+
+**Expected Results:**
+- All above formats are accepted without validation errors.
+- Values are stored as entered (no forced reformatting unless documented).
 
 ---
 
 ### TC-B-004: URL fields reject non-URL values
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-B-004 | URL fields reject non-URL values |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: URL fields reject non-URL values.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-B-004 |
+| **Priority** | P1 — High |
+| **Type** | Validation |
+
+**Steps:**
+1. Enter `just text` in the LinkedIn URL field.
+2. Enter `ftp://invalid` in the Portfolio URL field.
+3. Attempt to save.
+
+**Expected Results:**
+- Inline validation errors appear for fields that expect valid `http/https` URLs.
+- Save is blocked.
 
 ---
 
 ### TC-B-005: All Contact Info fields are optional except Full Name
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-B-005 | All Contact Info fields are optional except Full Name |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: All Contact Info fields are optional except Full Name.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-B-005 |
+| **Priority** | P1 — High |
+| **Type** | Validation |
+
+**Steps:**
+1. Enter only the Full Name. Leave all other fields blank.
+2. Save.
+
+**Expected Results:**
+- Save succeeds without errors.
+- Blank optional fields remain blank after reload.
 
 ---
 
 ### TC-B-006: Full Name cannot be saved as blank
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-B-006 | Full Name cannot be saved as blank |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Full Name cannot be saved as blank.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-B-006 |
+| **Priority** | P0 — Critical |
+| **Type** | Validation |
+
+**Steps:**
+1. Clear the Full Name field.
+2. Attempt to save.
+
+**Expected Results:**
+- Validation error: "Full name is required."
+- Save is blocked.
 
 ---
 
 ### TC-B-007: Special characters in Full Name are preserved
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-B-007 | Special characters in Full Name are preserved |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Special characters in Full Name are preserved.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-B-007 |
+| **Priority** | P2 — Medium |
+| **Type** | Functional / Edge |
+
+**Steps:**
+1. Enter `José María O'Brien-Ñúñez` in the Full Name field.
+2. Save and reload.
+
+**Expected Results:**
+- Name is saved and displayed with all special characters intact (no encoding artifacts).
 
 ---
 
 ### TC-B-008: Contact Info is included in optimized resumes
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-B-008 | Contact Info is included in optimized resumes |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Contact Info is included in optimized resumes.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-B-008 |
+| **Priority** | P1 — High |
+| **Type** | Integration (cross-feature) |
+
+**Steps:**
+1. Save complete Contact Info.
+2. Trigger a resume optimization from the optimization form.
+3. Review the generated/tailored resume output.
+
+**Expected Results:**
+- Full Name, Email, Phone, and at least one URL appear in the optimized resume output.
 
 ---
 
@@ -186,41 +312,91 @@ A test case **passes** when all stated expected results are observed with no unh
 
 ### TC-C-001: Save headline and detailed paragraph
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-C-001 | Save headline and detailed paragraph |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Save headline and detailed paragraph.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-C-001 |
+| **Priority** | P0 — Critical |
+| **Type** | Functional |
+
+**Steps:**
+1. Open Professional Summary section.
+2. Enter a headline: `"Full-Stack Engineer | React & Node.js | 7 Years Experience"`.
+3. Enter a multi-sentence paragraph summary (150–300 words).
+4. Save and reload.
+
+**Expected Results:**
+- Both fields are saved independently and correctly repopulated after reload.
+- Paragraph preserves line breaks if any were entered.
 
 ---
 
 ### TC-C-002: Character limit on headline
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-C-002 | Character limit on headline |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Character limit on headline.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-C-002 |
+| **Priority** | P2 — Medium |
+| **Type** | Validation / UI |
+
+**Steps:**
+1. Enter a headline exceeding the expected character limit (try 500 characters).
+
+**Expected Results:**
+- Input is capped or a visible character count/limit indicator is shown.
+- If capped, text stops accepting input at the limit.
+- If a counter is shown, it turns red or warns near/at the limit.
 
 ---
 
 ### TC-C-003: Summary fields are optional
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-C-003 | Summary fields are optional |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Summary fields are optional.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-C-003 |
+| **Priority** | P2 — Medium |
+| **Type** | Validation |
+
+**Steps:**
+1. Leave both headline and paragraph blank.
+2. Save.
+
+**Expected Results:** Save succeeds with no errors.
 
 ---
 
 ### TC-C-004: Markdown or formatting in paragraph
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-C-004 | Markdown or formatting in paragraph |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Markdown or formatting in paragraph.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-C-004 |
+| **Priority** | P2 — Medium |
+| **Type** | Functional / Edge |
+
+**Steps:**
+1. Enter text with special characters and symbols: `**bold**`, `—`, `&`, `<strong>`.
+2. Save and reload.
+
+**Expected Results:**
+- Content is stored and displayed as entered (raw text) or rendered correctly if markdown is supported.
+- No XSS injection occurs. HTML tags are either escaped or stripped safely.
 
 ---
 
 ### TC-C-005: Summary length is preserved through optimization
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-C-005 | Summary length is preserved through optimization |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Summary length is preserved through optimization.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-C-005 |
+| **Priority** | P1 — High |
+| **Type** | Integration |
+
+**Steps:**
+1. Save a detailed 3-paragraph summary.
+2. Run an optimization.
+
+**Expected Results:**
+- The summary data from the master resume is used as source material for the optimized output.
+- The original master resume summary is not modified by the optimization process.
 
 ---
 
@@ -228,73 +404,161 @@ A test case **passes** when all stated expected results are observed with no unh
 
 ### TC-D-001: Add a skill tag
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-D-001 | Add a skill tag |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Add a skill tag.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-D-001 |
+| **Priority** | P0 — Critical |
+| **Type** | Functional |
+
+**Steps:**
+1. Open Technical Skills section.
+2. Type `React` in the tag input and press Enter (or click Add).
+3. Save.
+
+**Expected Results:**
+- "React" appears as a tag/chip in the skills list.
+- Tag persists after page reload.
 
 ---
 
 ### TC-D-002: Add multiple skill tags in sequence
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-D-002 | Add multiple skill tags in sequence |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Add multiple skill tags in sequence.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-D-002 |
+| **Priority** | P0 — Critical |
+| **Type** | Functional |
+
+**Steps:**
+1. Add the following tags one by one: `Python`, `Docker`, `PostgreSQL`, `AWS`, `TypeScript`.
+2. Save and reload.
+
+**Expected Results:**
+- All 5 tags are present and correctly labeled after reload.
+- Order is preserved (or alphabetical if sorting is applied — document behavior).
 
 ---
 
 ### TC-D-003: Delete a skill tag
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-D-003 | Delete a skill tag |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Delete a skill tag.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-D-003 |
+| **Priority** | P0 — Critical |
+| **Type** | Functional |
+
+**Steps:**
+1. With existing tags present, click the "×" or delete icon on one tag.
+2. Save and reload.
+
+**Expected Results:**
+- The deleted tag is no longer shown after reload.
+- Remaining tags are unaffected.
 
 ---
 
 ### TC-D-004: Duplicate skill tags are prevented
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-D-004 | Duplicate skill tags are prevented |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Duplicate skill tags are prevented.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-D-004 |
+| **Priority** | P1 — High |
+| **Type** | Validation |
+
+**Steps:**
+1. Add `JavaScript`.
+2. Attempt to add `JavaScript` again.
+
+**Expected Results:**
+- Duplicate is rejected. Either the input clears with a toast ("Skill already added") or the duplicate is silently ignored.
+- Only one "JavaScript" tag exists in the list.
 
 ---
 
 ### TC-D-005: Case sensitivity of skill tags
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-D-005 | Case sensitivity of skill tags |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Case sensitivity of skill tags.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-D-005 |
+| **Priority** | P2 — Medium |
+| **Type** | Validation / Edge |
+
+**Steps:**
+1. Add `react` (lowercase).
+2. Attempt to add `React` (capitalized).
+
+**Expected Results:**
+- Behavior is consistent and documented. Either: (a) treated as duplicates and second entry blocked, or (b) both stored separately. Document which is expected.
 
 ---
 
 ### TC-D-006: Skill tags cannot be blank
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-D-006 | Skill tags cannot be blank |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Skill tags cannot be blank.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-D-006 |
+| **Priority** | P1 — High |
+| **Type** | Validation |
+
+**Steps:**
+1. Press Enter in the tag input field while it is empty.
+
+**Expected Results:**
+- No blank tag is added.
+- Input field remains focused.
 
 ---
 
 ### TC-D-007: Skill tags with special characters
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-D-007 | Skill tags with special characters |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Skill tags with special characters.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-D-007 |
+| **Priority** | P2 — Medium |
+| **Type** | Edge |
+
+**Steps:**
+1. Add skill tags: `C++`, `C#`, `.NET`, `Node.js`, `Vue 3`.
+
+**Expected Results:**
+- All tags are saved and displayed exactly as entered (symbols preserved).
 
 ---
 
 ### TC-D-008: Large number of skill tags
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-D-008 | Large number of skill tags |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Large number of skill tags.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-D-008 |
+| **Priority** | P2 — Medium |
+| **Type** | Performance / Edge |
+
+**Steps:**
+1. Add 50 skill tags.
+2. Save and reload.
+
+**Expected Results:**
+- All 50 tags save and reload correctly.
+- UI wraps gracefully (no overflow or layout breakage).
+- Performance is acceptable (no noticeable lag when rendering tags).
 
 ---
 
 ### TC-D-009: Skills appear correctly in ATS optimization output
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-D-009 | Skills appear correctly in ATS optimization output |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Skills appear correctly in ATS optimization output.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-D-009 |
+| **Priority** | P1 — High |
+| **Type** | Integration |
+
+**Steps:**
+1. Add 10 skills including `Python`, `REST APIs`, `Agile`.
+2. Run an optimization against a job description that includes those keywords.
+
+**Expected Results:**
+- The optimized resume includes matching skills from the master resume.
+- The master resume skill list is not modified after optimization.
 
 ---
 
@@ -302,65 +566,145 @@ A test case **passes** when all stated expected results are observed with no unh
 
 ### TC-E-001: Add a new portfolio project with all fields
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-E-001 | Add a new portfolio project with all fields |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Add a new portfolio project with all fields.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-E-001 |
+| **Priority** | P0 — Critical |
+| **Type** | Functional |
+
+**Steps:**
+1. Open Portfolio Projects section.
+2. Click "Add Project."
+3. Fill in: Title, URL, Description, Tech Stack, Achievements.
+4. Save and reload.
+
+**Expected Results:**
+- Project appears in the list with all entered data.
+- All fields persist correctly after reload.
 
 ---
 
 ### TC-E-002: Project URL validation
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-E-002 | Project URL validation |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Project URL validation.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-E-002 |
+| **Priority** | P1 — High |
+| **Type** | Validation |
+
+**Steps:**
+1. Enter `not-a-url` in the Project URL field.
+2. Attempt to save.
+
+**Expected Results:**
+- Inline validation error on the URL field.
+- Save is blocked until a valid URL or blank value is provided.
 
 ---
 
 ### TC-E-003: Project URL is optional
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-E-003 | Project URL is optional |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Project URL is optional.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-E-003 |
+| **Priority** | P1 — High |
+| **Type** | Validation |
+
+**Steps:**
+1. Add a project with Title, Description, and Tech Stack but no URL.
+2. Save.
+
+**Expected Results:** Save succeeds. URL field shows blank/empty after reload.
 
 ---
 
 ### TC-E-004: Add multiple projects
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-E-004 | Add multiple projects |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Add multiple projects.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-E-004 |
+| **Priority** | P0 — Critical |
+| **Type** | Functional |
+
+**Steps:**
+1. Add 3 separate portfolio projects, each with distinct data.
+2. Save and reload.
+
+**Expected Results:**
+- All 3 projects are listed in the correct order.
+- No data from one project bleeds into another.
 
 ---
 
 ### TC-E-005: Edit an existing project
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-E-005 | Edit an existing project |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Edit an existing project.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-E-005 |
+| **Priority** | P0 — Critical |
+| **Type** | Functional |
+
+**Steps:**
+1. Click "Edit" on an existing project.
+2. Change the Title and add an achievement bullet.
+3. Save and reload.
+
+**Expected Results:**
+- Updated fields are saved. Other projects are unaffected.
 
 ---
 
 ### TC-E-006: Delete a project
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-E-006 | Delete a project |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Delete a project.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-E-006 |
+| **Priority** | P1 — High |
+| **Type** | Functional |
+
+**Steps:**
+1. Click "Delete" on a project.
+2. Confirm deletion in the dialog (if one appears).
+3. Reload.
+
+**Expected Results:**
+- Project is permanently removed.
+- Remaining projects are unaffected and their order is preserved.
 
 ---
 
 ### TC-E-007: Tech Stack field on project (tag-based)
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-E-007 | Tech Stack field on project (tag-based) |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Tech Stack field on project (tag-based).<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-E-007 |
+| **Priority** | P1 — High |
+| **Type** | Functional |
+
+**Steps:**
+1. In a project's Tech Stack field, add tags: `React`, `Firebase`, `TailwindCSS`.
+2. Save and reload.
+
+**Expected Results:**
+- Tags save correctly and display as chips/tags.
+- Follows same duplicate prevention behavior as TC-D-004.
 
 ---
 
 ### TC-E-008: Achievements field accepts multi-line input
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-E-008 | Achievements field accepts multi-line input |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Achievements field accepts multi-line input.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-E-008 |
+| **Priority** | P2 — Medium |
+| **Type** | Functional |
+
+**Steps:**
+1. Enter 3 achievement bullet points in the Achievements field (using Enter for newlines).
+2. Save and reload.
+
+**Expected Results:**
+- All 3 achievements are preserved with correct line breaks.
 
 ---
 
@@ -368,81 +712,174 @@ A test case **passes** when all stated expected results are observed with no unh
 
 ### TC-F-001: Add a new employment entry with all fields
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-F-001 | Add a new employment entry with all fields |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Add a new employment entry with all fields.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-F-001 |
+| **Priority** | P0 — Critical |
+| **Type** | Functional |
+
+**Steps:**
+1. Open Employment History section.
+2. Click "Add Position."
+3. Fill in: Company, Role, Start Date, End Date, Description, Tech Stack (tags), Achievements.
+4. Save and reload.
+
+**Expected Results:**
+- Entry appears with all entered data intact.
 
 ---
 
 ### TC-F-002: "Currently employed here" / Present end date
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-F-002 | "Currently employed here" / Present end date |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: "Currently employed here" / Present end date.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-F-002 |
+| **Priority** | P1 — High |
+| **Type** | Functional |
+
+**Steps:**
+1. Add a position with a Start Date but check "Currently Working Here" (or leave End Date blank/set to "Present").
+2. Save and reload.
+
+**Expected Results:**
+- Entry shows "Present" or equivalent for the End Date.
+- Value is stored appropriately (e.g., null or `"Present"` string).
 
 ---
 
 ### TC-F-003: End date cannot precede start date
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-F-003 | End date cannot precede start date |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: End date cannot precede start date.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-F-003 |
+| **Priority** | P1 — High |
+| **Type** | Validation |
+
+**Steps:**
+1. Set Start Date to `January 2023` and End Date to `December 2022`.
+2. Attempt to save.
+
+**Expected Results:**
+- Validation error: "End date must be after start date."
+- Save is blocked.
 
 ---
 
 ### TC-F-004: Multiple positions — correct ordering
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-F-004 | Multiple positions — correct ordering |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Multiple positions — correct ordering.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-F-004 |
+| **Priority** | P1 — High |
+| **Type** | Functional |
+
+**Steps:**
+1. Add 3 employment entries with different date ranges.
+2. Save and reload.
+
+**Expected Results:**
+- All 3 entries are listed. Default order is most recent first (or preserve entry order — document expected behavior).
 
 ---
 
 ### TC-F-005: Edit an existing employment entry
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-F-005 | Edit an existing employment entry |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Edit an existing employment entry.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-F-005 |
+| **Priority** | P0 — Critical |
+| **Type** | Functional |
+
+**Steps:**
+1. Edit the Role field on an existing entry.
+2. Save and reload.
+
+**Expected Results:** Updated role is reflected. Other entries unaffected.
 
 ---
 
 ### TC-F-006: Delete an employment entry
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-F-006 | Delete an employment entry |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Delete an employment entry.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-F-006 |
+| **Priority** | P1 — High |
+| **Type** | Functional |
+
+**Steps:**
+1. Delete one employment entry.
+2. Reload.
+
+**Expected Results:** Entry is permanently removed. Other entries are preserved.
 
 ---
 
 ### TC-F-007: Company name accepts unicode/international characters
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-F-007 | Company name accepts unicode/international characters |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Company name accepts unicode/international characters.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-F-007 |
+| **Priority** | P2 — Medium |
+| **Type** | Edge |
+
+**Steps:**
+1. Enter company name: `Ñoño & Asociados S.A.`.
+2. Save and reload.
+
+**Expected Results:** Company name is displayed correctly with all characters intact.
 
 ---
 
 ### TC-F-008: Required fields — Company and Role
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-F-008 | Required fields — Company and Role |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Required fields — Company and Role.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-F-008 |
+| **Priority** | P1 — High |
+| **Type** | Validation |
+
+**Steps:**
+1. Add an entry with no Company or Role.
+2. Attempt to save.
+
+**Expected Results:**
+- Validation errors on Company and Role fields.
+- Save blocked.
 
 ---
 
 ### TC-F-009: Achievements field supports rich multi-line text
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-F-009 | Achievements field supports rich multi-line text |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Achievements field supports rich multi-line text.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-F-009 |
+| **Priority** | P1 — High |
+| **Type** | Functional |
+
+**Steps:**
+1. Enter 5 achievement bullets with quantified results (e.g., "Reduced load time by 40%").
+2. Save and reload.
+
+**Expected Results:**
+- All 5 bullets are preserved with correct formatting and line breaks.
 
 ---
 
 ### TC-F-010: Employment history in optimization output
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-F-010 | Employment history in optimization output |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Employment history in optimization output.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-F-010 |
+| **Priority** | P1 — High |
+| **Type** | Integration |
+
+**Steps:**
+1. Save 2 employment entries.
+2. Run an optimization.
+
+**Expected Results:**
+- Both entries appear in the tailored resume output.
+- Master resume data is not mutated.
 
 ---
 
@@ -450,49 +887,100 @@ A test case **passes** when all stated expected results are observed with no unh
 
 ### TC-G-001: Add an education entry with all fields
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-G-001 | Add an education entry with all fields |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Add an education entry with all fields.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-G-001 |
+| **Priority** | P0 — Critical |
+| **Type** | Functional |
+
+**Steps:**
+1. Open Education section.
+2. Fill in: School, Degree, Field of Study, Graduation Year.
+3. Save and reload.
+
+**Expected Results:** All fields saved and repopulated correctly.
 
 ---
 
 ### TC-G-002: Graduation Year validation
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-G-002 | Graduation Year validation |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Graduation Year validation.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-G-002 |
+| **Priority** | P1 — High |
+| **Type** | Validation |
+
+**Steps:**
+1. Enter `1800` as graduation year.
+2. Enter `2100` as graduation year.
+3. Enter `abcd` as graduation year.
+
+**Expected Results:**
+- Unrealistic years (pre-1950 or far future) trigger a warning or are rejected.
+- Non-numeric input is rejected with a validation error.
 
 ---
 
 ### TC-G-003: Degree and Field of Study are optional
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-G-003 | Degree and Field of Study are optional |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Degree and Field of Study are optional.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-G-003 |
+| **Priority** | P2 — Medium |
+| **Type** | Validation |
+
+**Steps:**
+1. Add an entry with School only.
+2. Save.
+
+**Expected Results:** Save succeeds. Blank optional fields remain blank.
 
 ---
 
 ### TC-G-004: Add multiple education entries
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-G-004 | Add multiple education entries |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Add multiple education entries.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-G-004 |
+| **Priority** | P1 — High |
+| **Type** | Functional |
+
+**Steps:**
+1. Add two education entries (e.g., BS and MS).
+2. Save and reload.
+
+**Expected Results:** Both entries are listed with correct data.
 
 ---
 
 ### TC-G-005: Delete an education entry
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-G-005 | Delete an education entry |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Delete an education entry.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-G-005 |
+| **Priority** | P1 — High |
+| **Type** | Functional |
+
+**Steps:**
+1. Delete one education entry.
+2. Reload.
+
+**Expected Results:** Entry removed. Remaining entries unaffected.
 
 ---
 
 ### TC-G-006: School name is required
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-G-006 | School name is required |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: School name is required.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-G-006 |
+| **Priority** | P1 — High |
+| **Type** | Validation |
+
+**Steps:**
+1. Attempt to save an education entry with blank School field.
+
+**Expected Results:** Validation error. Save blocked.
 
 ---
 
@@ -500,49 +988,97 @@ A test case **passes** when all stated expected results are observed with no unh
 
 ### TC-H-001: Add a reference with all fields
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-H-001 | Add a reference with all fields |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Add a reference with all fields.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-H-001 |
+| **Priority** | P1 — High |
+| **Type** | Functional |
+
+**Steps:**
+1. Open References section.
+2. Fill in: Name, Title, Company, Contact Details (email and/or phone).
+3. Save and reload.
+
+**Expected Results:** All fields saved correctly.
 
 ---
 
 ### TC-H-002: Contact Details field accepts email and phone
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-H-002 | Contact Details field accepts email and phone |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Contact Details field accepts email and phone.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-H-002 |
+| **Priority** | P2 — Medium |
+| **Type** | Functional |
+
+**Steps:**
+1. Enter both an email and phone number in the Contact Details field (or separate fields if provided).
+2. Save and reload.
+
+**Expected Results:** Both values are preserved.
 
 ---
 
 ### TC-H-003: All reference fields are optional except Name
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-H-003 | All reference fields are optional except Name |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: All reference fields are optional except Name.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-H-003 |
+| **Priority** | P2 — Medium |
+| **Type** | Validation |
+
+**Steps:**
+1. Add reference with Name only.
+2. Save.
+
+**Expected Results:** Save succeeds.
 
 ---
 
 ### TC-H-004: Add multiple references
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-H-004 | Add multiple references |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Add multiple references.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-H-004 |
+| **Priority** | P1 — High |
+| **Type** | Functional |
+
+**Steps:**
+1. Add 3 references.
+2. Save and reload.
+
+**Expected Results:** All 3 references saved and listed correctly.
 
 ---
 
 ### TC-H-005: Delete a reference
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-H-005 | Delete a reference |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Delete a reference.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-H-005 |
+| **Priority** | P1 — High |
+| **Type** | Functional |
+
+**Steps:**
+1. Delete one reference.
+2. Reload.
+
+**Expected Results:** Reference removed. Others unaffected.
 
 ---
 
 ### TC-H-006: Reference Name is required
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-H-006 | Reference Name is required |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Reference Name is required.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-H-006 |
+| **Priority** | P1 — High |
+| **Type** | Validation |
+
+**Steps:**
+1. Leave Name blank and attempt to save a reference.
+
+**Expected Results:** Validation error. Save blocked.
 
 ---
 
@@ -550,57 +1086,121 @@ A test case **passes** when all stated expected results are observed with no unh
 
 ### TC-I-001: Collapse and expand a section
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-I-001 | Collapse and expand a section |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Collapse and expand a section.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-I-001 |
+| **Priority** | P1 — High |
+| **Type** | UI |
+
+**Steps:**
+1. Click the collapse toggle on the Employment History section.
+2. Verify section content is hidden.
+3. Click again to expand.
+
+**Expected Results:**
+- Section collapses (content hidden, header remains visible).
+- Section expands to show content again.
+- Animation/transition is smooth (no layout jump).
 
 ---
 
 ### TC-I-002: All sections can be independently collapsed
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-I-002 | All sections can be independently collapsed |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: All sections can be independently collapsed.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-I-002 |
+| **Priority** | P2 — Medium |
+| **Type** | UI |
+
+**Steps:**
+1. Collapse all 7 sections one by one.
+
+**Expected Results:**
+- All sections collapse independently.
+- Collapsing one does not affect others.
 
 ---
 
 ### TC-I-003: Reorder sections via drag and drop
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-I-003 | Reorder sections via drag and drop |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Reorder sections via drag and drop.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-I-003 |
+| **Priority** | P1 — High |
+| **Type** | Functional / UI |
+
+**Steps:**
+1. Drag the "Education" section above "Employment History."
+2. Release.
+3. Save (if manual save required) and reload.
+
+**Expected Results:**
+- Section order visually updates on drop.
+- New order persists after reload.
 
 ---
 
 ### TC-I-004: Reorder sections and verify optimization uses new order
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-I-004 | Reorder sections and verify optimization uses new order |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Reorder sections and verify optimization uses new order.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-I-004 |
+| **Priority** | P2 — Medium |
+| **Type** | Integration |
+
+**Steps:**
+1. Move "Portfolio Projects" above "Employment History."
+2. Run an optimization.
+
+**Expected Results:**
+- Optimized resume respects the section order set in the master resume (or documents if optimization overrides ordering).
 
 ---
 
 ### TC-I-005: Drag handle is only visible when hovering (if applicable)
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-I-005 | Drag handle is only visible when hovering (if applicable) |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Drag handle is only visible when hovering (if applicable).<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-I-005 |
+| **Priority** | P3 — Low |
+| **Type** | UI |
+
+**Steps:**
+1. Hover over a section header.
+
+**Expected Results:** Drag handle appears on hover. Not visible when not hovering.
 
 ---
 
 ### TC-I-006: Collapse state is preserved on page reload
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-I-006 | Collapse state is preserved on page reload |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Collapse state is preserved on page reload.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-I-006 |
+| **Priority** | P2 — Medium |
+| **Type** | Persistence |
+
+**Steps:**
+1. Collapse 3 sections.
+2. Reload the page.
+
+**Expected Results:** Sections remain collapsed after reload (if collapse state is persisted — document expected behavior if not).
 
 ---
 
 ### TC-I-007: Keyboard accessibility of collapse toggle
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-I-007 | Keyboard accessibility of collapse toggle |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Keyboard accessibility of collapse toggle.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-I-007 |
+| **Priority** | P2 — Medium |
+| **Type** | Accessibility |
+
+**Steps:**
+1. Tab to a section's collapse toggle.
+2. Press Enter or Space.
+
+**Expected Results:** Section toggles collapsed/expanded state via keyboard only.
 
 ---
 
@@ -608,73 +1208,167 @@ A test case **passes** when all stated expected results are observed with no unh
 
 ### TC-J-001: Create a second master resume profile
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-J-001 | Create a second master resume profile |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Create a second master resume profile.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-J-001 |
+| **Priority** | P0 — Critical |
+| **Type** | Functional |
+
+**Steps:**
+1. From the editor or dashboard, create a second profile named "Product Management — 2026."
+2. Add distinct contact info and skills to this profile.
+3. Save.
+
+**Expected Results:**
+- Second profile is created and appears in the Profile Switcher.
+- Data is isolated from Profile 1.
 
 ---
 
 ### TC-J-002: Switch between profiles using the Profile Switcher
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-J-002 | Switch between profiles using the Profile Switcher |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Switch between profiles using the Profile Switcher.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-J-002 |
+| **Priority** | P0 — Critical |
+| **Type** | Functional |
+
+**Steps:**
+1. With 2+ profiles, open the Profile Switcher.
+2. Select Profile 2.
+3. Verify Profile 2's data loads.
+4. Switch back to Profile 1.
+
+**Expected Results:**
+- Correct data loads for each profile on switch.
+- No data from one profile appears in another.
 
 ---
 
 ### TC-J-003: Profile data is strictly isolated
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-J-003 | Profile data is strictly isolated |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Profile data is strictly isolated.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-J-003 |
+| **Priority** | P0 — Critical |
+| **Type** | Functional / Data Integrity |
+
+**Steps:**
+1. Profile 1: Skills = `[React, Node.js]`. Profile 2: Skills = `[Excel, PowerPoint]`.
+2. Switch to Profile 2 and verify skills.
+3. Switch to Profile 1 and verify skills.
+
+**Expected Results:**
+- Profile 2 only shows `[Excel, PowerPoint]`.
+- Profile 1 only shows `[React, Node.js]`.
+- No cross-contamination.
 
 ---
 
 ### TC-J-004: Profile Switcher appears on the optimization form
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-J-004 | Profile Switcher appears on the optimization form |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Profile Switcher appears on the optimization form.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-J-004 |
+| **Priority** | P1 — High |
+| **Type** | Functional / Integration |
+
+**Steps:**
+1. Navigate to the optimization form.
+2. Verify the Profile Switcher is present.
+
+**Expected Results:**
+- Profile Switcher dropdown or selector is visible.
+- It lists all created profiles.
 
 ---
 
 ### TC-J-005: Optimization uses selected profile's data
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-J-005 | Optimization uses selected profile's data |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Optimization uses selected profile's data.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-J-005 |
+| **Priority** | P0 — Critical |
+| **Type** | Integration |
+
+**Steps:**
+1. Select Profile 2 in the optimization form.
+2. Run an optimization.
+
+**Expected Results:**
+- Output reflects Profile 2's data (skills, employment, etc.).
+- Profile 1's data does not appear.
 
 ---
 
 ### TC-J-006: Rename a profile
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-J-006 | Rename a profile |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Rename a profile.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-J-006 |
+| **Priority** | P2 — Medium |
+| **Type** | Functional |
+
+**Steps:**
+1. Rename Profile 1 from "Untitled" to "Backend Engineering."
+2. Save and reload.
+
+**Expected Results:**
+- Profile Switcher reflects the new name.
+- Existing data in the profile is unchanged.
 
 ---
 
 ### TC-J-007: Delete a profile
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-J-007 | Delete a profile |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Delete a profile.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-J-007 |
+| **Priority** | P1 — High |
+| **Type** | Functional |
+
+**Steps:**
+1. With 2 profiles, delete Profile 2.
+2. Reload.
+
+**Expected Results:**
+- Profile 2 is removed from the Profile Switcher.
+- Profile 1 remains with all its data intact.
+- A confirmation dialog is shown before deletion.
 
 ---
 
 ### TC-J-008: Cannot delete the only remaining profile
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-J-008 | Cannot delete the only remaining profile |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Cannot delete the only remaining profile.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-J-008 |
+| **Priority** | P1 — High |
+| **Type** | Validation / Edge |
+
+**Steps:**
+1. Delete profiles until only 1 remains.
+2. Attempt to delete the last profile.
+
+**Expected Results:**
+- Delete is blocked or a warning is shown: "You must have at least one profile."
+- The last profile is not deleted.
 
 ---
 
 ### TC-J-009: Profile Switcher shows correct active profile indicator
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-J-009 | Profile Switcher shows correct active profile indicator |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Profile Switcher shows correct active profile indicator.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-J-009 |
+| **Priority** | P2 — Medium |
+| **Type** | UI |
+
+**Steps:**
+1. Switch to Profile 2 via the Profile Switcher.
+
+**Expected Results:**
+- Profile 2 is visually highlighted/checked as the active profile in the switcher.
 
 ---
 
@@ -682,41 +1376,95 @@ A test case **passes** when all stated expected results are observed with no unh
 
 ### TC-K-001: Auto-save or manual save persists all sections
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-K-001 | Auto-save or manual save persists all sections |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Auto-save or manual save persists all sections.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-K-001 |
+| **Priority** | P0 — Critical |
+| **Type** | Persistence |
+
+**Steps:**
+1. Fill in all 7 sections completely.
+2. Save.
+3. Close the browser tab.
+4. Reopen the application and navigate to the editor.
+
+**Expected Results:**
+- All data from all sections is intact.
 
 ---
 
 ### TC-K-002: Unsaved changes prompt on navigation away
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-K-002 | Unsaved changes prompt on navigation away |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Unsaved changes prompt on navigation away.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-K-002 |
+| **Priority** | P1 — High |
+| **Type** | UI / Persistence |
+
+**Steps:**
+1. Make a change in the editor without saving.
+2. Click to navigate away (e.g., to Dashboard).
+
+**Expected Results:**
+- A confirmation dialog appears: "You have unsaved changes. Are you sure you want to leave?"
+- Choosing "Stay" keeps the user on the editor with changes intact.
+- Choosing "Leave" navigates away (changes may be lost if no auto-save).
 
 ---
 
 ### TC-K-003: Data survives a browser refresh
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-K-003 | Data survives a browser refresh |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Data survives a browser refresh.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-K-003 |
+| **Priority** | P0 — Critical |
+| **Type** | Persistence |
+
+**Steps:**
+1. Save the resume.
+2. Press F5 / Cmd+R to hard refresh.
+
+**Expected Results:** All saved data is present after refresh.
 
 ---
 
 ### TC-K-004: Concurrent edit protection (same account, two tabs)
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-K-004 | Concurrent edit protection (same account, two tabs) |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Concurrent edit protection (same account, two tabs).<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-K-004 |
+| **Priority** | P2 — Medium |
+| **Type** | Concurrency / Edge |
+
+**Steps:**
+1. Open the editor in Tab A and Tab B with the same account.
+2. Edit the headline in Tab A and save.
+3. Edit the headline in Tab B and save.
+4. Reload.
+
+**Expected Results:**
+- One of the saves wins (last-write-wins is acceptable).
+- No data corruption or blank fields.
+- Optionally: a conflict warning is shown.
 
 ---
 
 ### TC-K-005: Save failure shows an error and retains form data
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-K-005 | Save failure shows an error and retains form data |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Save failure shows an error and retains form data.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-K-005 |
+| **Priority** | P1 — High |
+| **Type** | Error Handling |
+
+**Steps:**
+1. Throttle network to offline using browser DevTools.
+2. Make edits and click Save.
+
+**Expected Results:**
+- An error message appears: "Failed to save. Please try again."
+- Form data is NOT cleared — the user's inputs remain visible in the form.
+- Retry succeeds once network is restored.
 
 ---
 
@@ -724,65 +1472,223 @@ A test case **passes** when all stated expected results are observed with no unh
 
 ### TC-L-001: XSS injection in text fields
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-L-001 | XSS injection in text fields |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: XSS injection in text fields.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-L-001 |
+| **Priority** | P0 — Critical (Security) |
+| **Type** | Security |
+
+**Steps:**
+1. Enter `<script>alert('XSS')</script>` into the Full Name, Headline, and Project Description fields.
+2. Save and reload.
+
+**Expected Results:**
+- Scripts are not executed.
+- Content is either stripped or displayed as escaped plain text (e.g., `&lt;script&gt;`).
+- No alert dialogs appear.
 
 ---
 
 ### TC-L-002: SQL/NoSQL injection strings in fields
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-L-002 | SQL/NoSQL injection strings in fields |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: SQL/NoSQL injection strings in fields.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-L-002 |
+| **Priority** | P0 — Critical (Security) |
+| **Type** | Security |
+
+**Steps:**
+1. Enter `' OR '1'='1` and `{"$gt": ""}` in text fields.
+2. Save.
+
+**Expected Results:**
+- Values are treated as plain strings, stored safely.
+- No database errors or unexpected behavior.
 
 ---
 
 ### TC-L-003: Extremely long input in a text field
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-L-003 | Extremely long input in a text field |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Extremely long input in a text field.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-L-003 |
+| **Priority** | P2 — Medium |
+| **Type** | Edge |
+
+**Steps:**
+1. Paste 10,000 characters into the Professional Summary paragraph field.
+2. Save and reload.
+
+**Expected Results:**
+- Input is either accepted and stored correctly, or capped at a documented limit with a user-facing message.
+- No application crash or data truncation without warning.
 
 ---
 
 ### TC-L-004: Emoji and Unicode in text fields
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-L-004 | Emoji and Unicode in text fields |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Emoji and Unicode in text fields.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-L-004 |
+| **Priority** | P2 — Medium |
+| **Type** | Edge |
+
+**Steps:**
+1. Enter `🚀 Full-Stack Dev 🌍` in the Professional Headline field.
+2. Save and reload.
+
+**Expected Results:**
+- Emojis are displayed correctly.
+- No encoding errors or broken characters.
 
 ---
 
 ### TC-L-005: Resume with no sections filled still saves
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-L-005 | Resume with no sections filled still saves |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Resume with no sections filled still saves.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-L-005 |
+| **Priority** | P2 — Medium |
+| **Type** | Edge |
+
+**Steps:**
+1. Create a blank profile.
+2. Click Save without filling in any section.
+
+**Expected Results:**
+- Save succeeds.
+- Profile is listed in the Profile Switcher as a valid (empty) profile.
 
 ---
 
 ### TC-L-006: Session expiry during editing
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-L-006 | Session expiry during editing |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Session expiry during editing.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-L-006 |
+| **Priority** | P1 — High |
+| **Type** | Edge / Auth |
+
+**Steps:**
+1. Open the editor.
+2. Simulate session expiry (clear auth cookies or wait for timeout).
+3. Attempt to save.
+
+**Expected Results:**
+- User is redirected to the login page.
+- A message is shown: "Your session has expired. Please log in again."
+- Ideally, in-progress edits are recoverable after re-login (or user is warned they may be lost).
 
 ---
 
 ### TC-L-007: Mobile responsiveness of the editor
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-L-007 | Mobile responsiveness of the editor |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Mobile responsiveness of the editor.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-L-007 |
+| **Priority** | P1 — High |
+| **Type** | UI / Responsive |
+
+**Steps:**
+1. Open the editor on a 375×812 mobile viewport (iPhone SE simulation).
+2. Expand each section.
+3. Enter data in at least 3 fields.
+4. Save.
+
+**Expected Results:**
+- All sections are accessible and scrollable.
+- Inputs are usable (no overlapping elements, no text cut off).
+- Save succeeds on mobile.
 
 ---
 
 ### TC-L-008: Accessibility — keyboard-only navigation through the editor
 
-| Test Case ID | Test Case Description | Type | Priority | Steps | Expected Result | Pass | Fail | Notes |
-|---|---|---|---|---|---|---|---|---|
-| TC-L-008 | Accessibility — keyboard-only navigation through the editor |  |  | 1. Navigate to the relevant section for this test case.<br>2. Execute scenario: Accessibility — keyboard-only navigation through the editor.<br>3. Save/submit and reload where applicable.<br>4. Compare actual behavior against Expected Result. | Expected behavior matches the scenario acceptance criteria. | ☐ | ☐ |  |
+| Field | Detail |
+|-------|--------|
+| **Test ID** | TC-L-008 |
+| **Priority** | P2 — Medium |
+| **Type** | Accessibility |
+
+**Steps:**
+1. Without using a mouse, Tab through every interactive element on the editor page.
+2. Fill in the Full Name and one skill tag using keyboard only.
+3. Save using keyboard.
+
+**Expected Results:**
+- All interactive elements are reachable via Tab.
+- Focus indicators are clearly visible.
+- Skill tag can be added by pressing Enter.
+- Save button is reachable and activatable via Enter/Space.
 
 ---
 
+## Appendix — Test Data Samples
+
+### Sample Contact Info
+```
+Full Name:    Jane María Dela Cruz-Ñoño
+Email:        jane.delacruz@example.com
+Phone:        +63 917 555 0199
+LinkedIn:     https://linkedin.com/in/janedelacruz
+GitHub:       https://github.com/janedelacruz
+Portfolio:    https://janedelacruz.dev
+```
+
+### Sample Professional Headline
+```
+Senior Full-Stack Engineer | React · Node.js · PostgreSQL | 8 Years Building Scalable SaaS
+```
+
+### Sample Technical Skills (15 tags)
+```
+JavaScript, TypeScript, React, Next.js, Node.js, Express,
+PostgreSQL, Redis, Docker, AWS, CI/CD, REST APIs, GraphQL, 
+Jest, Agile
+```
+
+### Sample Employment Entry
+```
+Company:        Acme Corp
+Role:           Senior Software Engineer
+Start Date:     March 2021
+End Date:       Present
+Description:    Led frontend rebuild of the core dashboard product.
+Tech Stack:     React, TypeScript, GraphQL, AWS
+Achievements:
+  - Reduced page load time by 45% through code splitting and lazy loading
+  - Mentored 4 junior engineers; 3 promoted within 18 months
+  - Delivered new billing module 2 weeks ahead of schedule
+```
+
+### Sample Portfolio Project
+```
+Title:          ResumeAI Optimizer
+URL:            https://github.com/janedelacruz/resume-ai
+Description:    An AI-powered tool that tailors resumes to job descriptions.
+Tech Stack:     React, FastAPI, OpenAI API, PostgreSQL
+Achievements:
+  - 1,200+ active users within first month of launch
+  - Achieved 92% ATS keyword match rate in user testing
+```
+
+### Sample Education Entry
+```
+School:           University of the Philippines Diliman
+Degree:           Bachelor of Science
+Field of Study:   Computer Science
+Graduation Year:  2016
+```
+
+### Sample Reference
+```
+Name:             Dr. Roberto Santillan
+Title:            Engineering Director
+Company:          Acme Corp
+Contact Details:  roberto.santillan@acmecorp.com | +1 415 555 0123
+```
+
+---
+
+*End of Test Suite — Master Resume Feature*  
+*Total Test Cases: 85 | Sections Covered: 12*
