@@ -84,8 +84,6 @@ A test case **passes** when all stated expected results are observed with no unh
 
 ## Section A — Resume Upload & Initial Creation
 
----
-
 ### TC-A-001: Upload an existing resume file (PDF)
 
 | Field | Detail |
@@ -1620,73 +1618,6 @@ A test case **passes** when all stated expected results are observed with no unh
 - Focus indicators are clearly visible.
 - Skill tag can be added by pressing Enter.
 - Save button is reachable and activatable via Enter/Space.
-
----
-
-## Appendix — Test Data Samples
-
-### Sample Contact Info
-```
-Full Name:    Jane María Dela Cruz-Ñoño
-Email:        jane.delacruz@example.com
-Phone:        +63 917 555 0199
-LinkedIn:     https://linkedin.com/in/janedelacruz
-GitHub:       https://github.com/janedelacruz
-Portfolio:    https://janedelacruz.dev
-```
-
-### Sample Professional Headline
-```
-Senior Full-Stack Engineer | React · Node.js · PostgreSQL | 8 Years Building Scalable SaaS
-```
-
-### Sample Technical Skills (15 tags)
-```
-JavaScript, TypeScript, React, Next.js, Node.js, Express,
-PostgreSQL, Redis, Docker, AWS, CI/CD, REST APIs, GraphQL, 
-Jest, Agile
-```
-
-### Sample Employment Entry
-```
-Company:        Acme Corp
-Role:           Senior Software Engineer
-Start Date:     March 2021
-End Date:       Present
-Description:    Led frontend rebuild of the core dashboard product.
-Tech Stack:     React, TypeScript, GraphQL, AWS
-Achievements:
-  - Reduced page load time by 45% through code splitting and lazy loading
-  - Mentored 4 junior engineers; 3 promoted within 18 months
-  - Delivered new billing module 2 weeks ahead of schedule
-```
-
-### Sample Portfolio Project
-```
-Title:          ResumeAI Optimizer
-URL:            https://github.com/janedelacruz/resume-ai
-Description:    An AI-powered tool that tailors resumes to job descriptions.
-Tech Stack:     React, FastAPI, OpenAI API, PostgreSQL
-Achievements:
-  - 1,200+ active users within first month of launch
-  - Achieved 92% ATS keyword match rate in user testing
-```
-
-### Sample Education Entry
-```
-School:           University of the Philippines Diliman
-Degree:           Bachelor of Science
-Field of Study:   Computer Science
-Graduation Year:  2016
-```
-
-### Sample Reference
-```
-Name:             Dr. Roberto Santillan
-Title:            Engineering Director
-Company:          Acme Corp
-Contact Details:  roberto.santillan@acmecorp.com | +1 415 555 0123
-```
 
 ---
 
