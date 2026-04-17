@@ -263,11 +263,11 @@ A test case **passes** when all stated expected results are observed with no unh
 
 **Steps:**
 1. Clear the Full Name field.
-2. Attempt to save.
+2. Click save.
+3. Reload
 
 **Expected Results:**
-- Validation error: "Full name is required."
-- Save is blocked.
+- Full name is not deleted upon reload.
 
 ---
 
@@ -839,10 +839,11 @@ A test case **passes** when all stated expected results are observed with no unh
 **Steps:**
 1. Add an entry with no Company or Role.
 2. Attempt to save.
+3. Reload
 
 **Expected Results:**
 - Validation errors on Company and Role fields.
-- Save blocked.
+- Previous inputs remain.
 
 ---
 
@@ -919,7 +920,7 @@ A test case **passes** when all stated expected results are observed with no unh
 
 ---
 
-### TC-G-003: Degree and Field of Study are optional
+### TC-G-003: Degree and Field of Study are required
 
 | Field | Detail |
 |-------|--------|
@@ -930,8 +931,9 @@ A test case **passes** when all stated expected results are observed with no unh
 **Steps:**
 1. Add an entry with School only.
 2. Save.
+3. Reload.
 
-**Expected Results:** Save succeeds. Blank optional fields remain blank.
+**Expected Results:** Save fails. Previous inputs remain.
 
 ---
 
